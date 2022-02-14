@@ -7,6 +7,7 @@ typedef struct node
     struct node *next;
 } NODE;
 
+
 void printlist(NODE *first);
 void insert(NODE *first);
 void delete (NODE *first);
