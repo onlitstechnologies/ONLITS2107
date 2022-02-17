@@ -7,15 +7,15 @@ typedef struct node
     struct node *next;
 } NODE;
 
+void printlist();
+void insert();
+void delete ();
 
-void printlist(NODE *first);
-void insert(NODE *first);
-void delete (NODE *first);
+NODE *first = NULL;     //global first pointer
 
 int main()
 {
     int ch;
-    NODE *first = NULL;
     printf("\nmain(): %p\n", first);
     while (1) // infinite loop
     {
@@ -32,44 +32,60 @@ int main()
             exit(0);
             break;
         case 1:
-            printlist(first);
+            printlist();
             break;
         case 2:
-            insert(first);
+            insert();
             break;
         case 3:
-            delete (first);
+            delete ();
             break;
         default:
             printf("\nInvalid option.\n\n");
         }
     }
+    return 0;
 }
 
-void printlist(NODE *first)
-{
-}
-
-void insert(NODE *first)
+void printlist()
 {
     NODE *current = first;
-    printf("\ninsert(): %p\n", first);
-    printf("\ninsert(): %p\n", current);
-    while (1)
+    if (current == NULL)        //Checking whether list is empty
     {
-        if (current == NULL)
-        {
-            break;
-        }
+        printf("\nList is empty, nothing to print.\n\n");
+        return;
     }
 
-    current = malloc(sizeof(NODE));
-    printf("Enter a value: ");
-    scanf("%d", current->info);
-    current->next = NULL;
+    printf("\nPrinting list ...\n\n");
+    do
+    {
+        printf("%d\n", current->info);
+        current = current->next;
+    } while (current != NULL);
+    printf("\nEnd of list.\n\n");
 }
 
-void delete (NODE *first)
+void insert()
+{
+    NODE *current = first;
+    printf("\nEnter value: ");
+    if(current == NULL)     //code for first node
+    {
+        first = current = malloc(sizeof(NODE));
+        scanf("%d", &current->info);
+        current->next = NULL;
+        printf("\nNode added\n\n");
+        return;
+    }
+    
+    current->next = malloc(sizeof(NODE));
+    // current = current->next;
+    scanf("%d", &current->next->info);
+    current->next->next = NULL;
+    printf("\nNode added\n\n");
+}
+
+void delete ()
 {
     
 }
