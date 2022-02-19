@@ -11,7 +11,7 @@ void printlist();
 void insert();
 void delete ();
 
-NODE *first = NULL;     //global first pointer
+NODE *first = NULL; // global first pointer
 
 int main()
 {
@@ -50,7 +50,7 @@ int main()
 void printlist()
 {
     NODE *current = first;
-    if (current == NULL)        //Checking whether list is empty
+    if (current == NULL) // Checking whether list is empty
     {
         printf("\nList is empty, nothing to print.\n\n");
         return;
@@ -69,7 +69,7 @@ void insert()
 {
     NODE *current = first;
     printf("\nEnter value: ");
-    if(current == NULL)     //code for first node
+    if (current == NULL) // code for first node
     {
         first = current = malloc(sizeof(NODE));
         scanf("%d", &current->info);
@@ -77,11 +77,16 @@ void insert()
         printf("\nNode added\n\n");
         return;
     }
-    
+
+    while (current->next != NULL)
+    {
+        current = current->next;
+    }
+
     current->next = malloc(sizeof(NODE));
-    // current = current->next;
-    scanf("%d", &current->next->info);
-    current->next->next = NULL;
+    current = current->next;
+    scanf("%d", &current->info);
+    current->next = NULL;
     printf("\nNode added\n\n");
 }
 
