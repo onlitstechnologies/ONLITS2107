@@ -78,7 +78,7 @@ void insert()
         return;
     }
 
-    while (current->next != NULL)
+    while (current->next != NULL)      //locating the last node
     {
         current = current->next;
     }
