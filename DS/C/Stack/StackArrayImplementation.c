@@ -17,7 +17,7 @@ int main()
         printf("1. Print stack\n");
         printf("2. Push\n");
         printf("3. Pop\n");
-        printf("Enter choice: ");
+        printf("Enter choice (0 to exit): ");
         scanf("%d", &ch);
         switch (ch)
         {
@@ -30,7 +30,11 @@ int main()
         case 2:
             push(stack, &size);
             break;
+        case 3:
+            pop(stack, &size);
+            break;
         default:
+            printf("\nInvalid option.\n\n");
             break;
         }
     }
@@ -39,9 +43,9 @@ int main()
 
 void printstack(int *stack, int *size)
 {
-    if (*size == 0)         // Handling stack underflow condition
+    if (*size == 0) // Handling stack underflow condition
     {
-        printf("\nStack is empty, nothing to print.\n\n"); 
+        printf("\nStack is empty, nothing to print.\n\n");
         return;
     }
 
@@ -55,14 +59,34 @@ void printstack(int *stack, int *size)
 
 void push(int *stack, int *size)
 {
-    if (*size == MAX)       //Handling stack overflow condition
+    if (*size == MAX) // Handling stack overflow condition
     {
-        printf ("\nStack is full, cannot insert anymore.\n\n");
+        printf("\nStack is full, cannot push anymore.\n\n");
         return;
     }
 
+    for (int i = *size; i > 0; i--) // shifting logic
+    {
+        stack[i] = stack[i - 1];
+    }
     printf("\nEnter value: ");
     scanf("%d", &stack[0]);
     (*size)++;
     printf("\nData pushed.\n\n");
+}
+
+void pop(int *stack, int *size)
+{
+    if (*size == 0) // Handling stack underflow condition
+    {
+        printf("\nStack is empty, nothing to pop.\n\n");
+        return;
+    }
+
+    for (int i = 0; i < *size; i++)
+    {
+        stack[i] = stack[i + 1];
+    }
+    (*size)--;
+    printf("\nData popped.\n\n");
 }
