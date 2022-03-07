@@ -7,6 +7,7 @@ function send_mail()
     require 'Authenticate.php';     //Not required
     require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
     require 'vendor/phpmailer/phpmailer/src/SMTP.php';
+    require 'vendor/phpmailer/phpmailer/src/Exception.php';
 
     $mail = new PHPMailer();    //Instantiating PHPMailer Class
     $mail->isSMTP();
@@ -21,12 +22,15 @@ function send_mail()
     $mail->addAddress("manishmishra.shg@gmail.com");
     $mail->setFrom("$username", "Test PHP Mailer");
     $mail->Subject = "OTP";
+    $mail->isHTML(true);
 
     $otp = rand(100000, 999999);
-    $content = "The OTP for completion of this process is $otp.";
+    $mail->addEmbeddedImage('logo.png', 'logo', 'logo');
+    $content = '<img src="cid:logo"><h1>The OTP for completion of this process is $otp.</h1>';
     // $content = "Name: $name, Email: $email, Message: $message";
 
-    $mail->msgHTML($content);
+    // $mail->msgHTML($content);
+    $mail->Body = $content;
 
     if (!$mail->send()) {
         echo "The was an error while sending email.";

@@ -83,7 +83,7 @@ void pop(int *stack, int *size)
         return;
     }
 
-    for (int i = 0; i < *size; i++)
+    for (int i = 0; i < *size; i++)     //O(n)
     {
         stack[i] = stack[i + 1];
     }
