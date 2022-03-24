@@ -42,7 +42,7 @@ int main()
     return 0;
 }
 
-void printqueue(int *queue, int *front, int *rear)
+void printqueue(int *queue, int *front, int *rear)  //O(n)
 {
     if (*front == -1) // Addressing underflow condition
     {
@@ -58,7 +58,7 @@ void printqueue(int *queue, int *front, int *rear)
     printf("\n...End of queue.\n\n");
 }
 
-void enqueue(int *queue, int *front, int *rear)
+void enqueue(int *queue, int *front, int *rear) //O(1)
 {
     if (*rear == MAX - 1) // Addressing overflow condition
     {
@@ -80,7 +80,7 @@ void enqueue(int *queue, int *front, int *rear)
     printf("\nElement Added\n\n");
 }
 
-void dequeue(int *queue, int *front, int *rear)
+void dequeue(int *queue, int *front, int *rear)     //O(n)
 {
     if (*front == -1) // Addressing underflow condition
     {
