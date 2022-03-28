@@ -95,9 +95,10 @@ void dequeue(NODE **front, NODE **rear)
         printf("\nQueue is empty, nothing to remove\n\n");
         return;
     }
-    NODE *temp = *front;
-    free(temp);
-    *front = (*front)->next;
 
+    NODE *temp = *front;
+    *front = (*front)->next;
+    free(temp);
+    
     printf("\nElement Deleted\n\n");
 }
