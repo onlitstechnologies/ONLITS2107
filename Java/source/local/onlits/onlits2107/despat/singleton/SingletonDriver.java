@@ -3,7 +3,7 @@ package local.onlits.onlits2107.despat.singleton;
 class Singleton {
     private int a;
 
-    Singleton(int a) {
+    Singleton(int a) {      //Private constructor
         this.a = a;
     }
 
